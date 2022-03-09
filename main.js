@@ -6,6 +6,7 @@ function submitIssue(e) {
   const severity = getInputValue('issueSeverity');
   const assignedTo = getInputValue('issueAssignedTo');
   
+  //Error handle here
   if (!description || !assignedTo) {
     Swal.fire({
       icon: 'error',
@@ -31,6 +32,7 @@ function submitIssue(e) {
 
 const closeIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
+  //Got an Error here and fixed
   const currentIssue = issues.find(issue => issue.id == id);
   currentIssue.status = 'Closed';
   localStorage.setItem('issues', JSON.stringify(issues));
@@ -39,6 +41,7 @@ const closeIssue = id => {
 
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
+  //Got an Error here and fixed
   const remainingIssues = issues.filter(issues => issues.id != id)
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
   fetchIssues();
@@ -49,6 +52,7 @@ const fetchIssues = () => {
   const issuesList = document.getElementById('issuesList');
   issuesList.innerHTML = '';
 
+  //Got an Error here and fixed
   for (var i = 0; i < issues?.length; i++) {
     const { id, description, severity, assignedTo, status } = issues[i];
 
